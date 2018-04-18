@@ -25,7 +25,7 @@ Jenkins是当前最常用的CI服务器，FIT2CLOUD Aliyun-OSS-Plugin for Jenkin
 
 三、Post-build actions: 上传Artifact到阿里云OSS
 -------------------------
-
+<pre>
 在Jenkins Job的Post-build actions/构建后执行，用户可以设上传Artifact到阿里云OSS。需要填写的信息是：
 1. Bucket名称:填写artifact要存放的bucket
 2. 要上传的artifacts:填写artifact文件,文件之间用';'隔开.支持ant path matcher;比如static/**/**.*能匹配到/static/abc/def/.../xyz.js,/static/amazing.js
@@ -35,7 +35,7 @@ Jenkins是当前最常用的CI服务器，FIT2CLOUD Aliyun-OSS-Plugin for Jenkin
 2. 要上传的artifacts: static/css/**.*;static/bootstrap/**.*;static/**/plugin/**.*
 3. Object前缀:
 那么上传后的hello.txt url为: http://f2c.oss-cn-hangzhou.aliyuncs.com/static/css/tooltip.css,http://f2c.oss-cn-hangzhou.aliyuncs.com/static/css/tooltip.min.js
-
+</pre>
 
 四、插件开发说明
 -------------------------
