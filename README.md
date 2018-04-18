@@ -26,19 +26,15 @@ Jenkins是当前最常用的CI服务器，FIT2CLOUD Aliyun-OSS-Plugin for Jenkin
 三、Post-build actions: 上传Artifact到阿里云OSS
 -------------------------
 
-在Jenkins Job的Post-build actions，用户可以设上传Artifact到阿里云OSS。需要填写的信息是：
-
-1. Bucket名称: artifact要存放的bucket
-2. 要上传的artifacts: 文件之间用;隔开。支持通配符描述，比如 text/*.zip
-3. Object前缀设置：可以设置object key的前缀，支持Jenkins环境变量比如: "${JOB_NAME}/${BUILD_ID}/${BUILD_NUMBER}/"
-
-假设一个job的名称是test，用户的设置如下
-
+在Jenkins Job的Post-build actions/构建后执行，用户可以设上传Artifact到阿里云OSS。需要填写的信息是：
+1. Bucket名称:填写artifact要存放的bucket
+2. 要上传的artifacts:填写artifact文件,文件之间用';'隔开.支持ant path matcher;比如static/**/**.*能匹配到/static/abc/def/.../xyz.js,/static/amazing.js
+3. Object前缀设置:支持jenkins内嵌占位如:${JOB_NAME},{BUILD_ID},${BUILD_NUMBER};不设置默认使用jenkins workspace下匹配到artifacts的全路径作为oss上的文件路径
+举个栗子:假设一个job的名称是test,endpoint是oss-cn-hangzhou.aliyuncs.com用户的设置如下
 1. bucketName: f2c
-2. 要上传的artifacts: hello.txt;hello1.txt
-3. Object前缀: ${JOB_NAME}/${BUILD_ID}/${BUILD_NUMBER}
-
-那么上传后的文件url为: http://f2c.oss-cn-hangzhou.aliyuncs.com/test/2015-01-20_14-22-46/5/hello.txt
+2. 要上传的artifacts: static/css/**.*;static/bootstrap/**.*;static/**/plugin/**.*
+3. Object前缀:
+那么上传后的hello.txt url为: http://f2c.oss-cn-hangzhou.aliyuncs.com/static/css/tooltip.css,http://f2c.oss-cn-hangzhou.aliyuncs.com/static/css/tooltip.min.js
 
 
 四、插件开发说明
@@ -50,4 +46,4 @@ Jenkins是当前最常用的CI服务器，FIT2CLOUD Aliyun-OSS-Plugin for Jenkin
 4. mvn jdi:run 进行本地调试
 5. mvn package 打包生成hpi文件
 
-如果有问题，请联系zhimin@fit2cloud.com
+生成的hpi文件在"系统设置"->"插件管理"->"高级" 里上传,重启jenkins后生效
