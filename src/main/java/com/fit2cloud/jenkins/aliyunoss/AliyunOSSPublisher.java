@@ -204,7 +204,7 @@ public class AliyunOSSPublisher extends Publisher {
 			expVP = expVP.trim() + Utils.FWD_SLASH;
 		}        
 		
-		boolean success = false;
+		boolean success = true;
 		try {
 			int filesUploaded = AliyunOSSClient.upload(build, listener,
                     this.getDescriptor().aliyunAccessKey,
